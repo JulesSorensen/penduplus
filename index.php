@@ -30,17 +30,19 @@
             switch ($_GET['p']) {
                 case 'login':
                     include("pages/$page"); break;
-                case 'signup':
-                    include("pages/$page"); break;
+                case 'shop':
+                    include("pages/boutique.php"); break;
+                case 'game':
+                    include("pages/game.php"); break;
                 default:
-                    $_GET['p'] = "about"; include("about.php"); break;
+                    $_GET['p'] = "about"; include("home.php"); break;
             }
         } else {
             $_GET['p'] = "home";
             include("pages/home.php");
         }
     } else {
-        include("pages/home.php");
+        include("pages/login.php");
     }
     ?>
 </body>
