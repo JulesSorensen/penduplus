@@ -22,7 +22,6 @@
 <body class="bg-gray-200">
     <?php
     session_start();
-    // session_destroy();
     // error_reporting(E_ERROR | E_PARSE);
 
     if (isset($_SESSION["online"])) {

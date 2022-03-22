@@ -1,22 +1,26 @@
+<link rel="stylesheet" href="../style/header.css">
 <?php
-session_start();
-if(isset($_SESSION))
-
+if(isset($_POST["deco"])){
+    session_destroy();
+    header("refresh:0;url=index.php?p=login");
+}
 
 ?>
 
+<form method="POST" action="">
+    <div class="topnav">
+        <a class="tnav" href="">Pendu+</a>
 
+        <div id="">
+            <a class="tnav" href="index.php?p=home">Accueil</a>
+            <a class="tnav" href="index.php?p=shop">Boutique</a>
+            <a class="tnav"><?php
+                if(isset($_SESSION["coin"])){
+                    echo $_SESSION["coin"];
+                }?> P.A</a>
+        </div>
 
-<link rel="stylesheet" href="../style/header.css">
-
-<div class="topnav">
-    <a class="tnav" href="#home">Pendu+</a>
-
-    <div id="">
-        <a class="tnav" href="#news">Accueil</a>
-        <a class="tnav" href="#contact">Boutique</a>
-        <a class="tnav" href="#contact">COIN</a>
+        <button type="Submit" name="deco" id="destroy">Déconexion</button>
     </div>
-
-    <a class="tnav" href="#about">Déconexion</a>
-</div>
+</form>
+    
