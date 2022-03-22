@@ -23,22 +23,22 @@
     <?php
     session_start();
     // error_reporting(E_ERROR | E_PARSE);
+
     if (isset($_SESSION["online"])) {
         if(isset($_GET['p'])) {
             $page = $_GET['p'] . ".php";
             switch ($_GET['p']) {
-                case 'login':
+                case 'home':
                     include("pages/$page"); break;
                 case 'shop':
-                    include("pages/boutique.php"); break;
+                    include("pages/$page"); break;
                 case 'game':
-                    include("pages/game.php"); break;
+                    include("pages/$page"); break;
                 default:
-                    $_GET['p'] = "about"; include("home.php"); break;
+                    $_GET['p'] = "login"; 
+                    include("pages/login.php");
+                    break;
             }
-        } else {
-            $_GET['p'] = "login";
-            include("pages/$_GET[p].php");
         }
     } else {
         $_GET['p'] = "login";
