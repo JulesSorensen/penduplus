@@ -1,0 +1,42 @@
+#content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#lettersDiv {
+    display: flex;
+}
+
+#letter {
+    font-size: x-large;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#keyboard {
+    margin: 50px 0px 0px 0px;
+    width: 500px;
+    height: 200px;
+}
+
+#kbLetter {
+    margin: 5px 5px 1px 1px;
+    width: 30px;
+    height: 30px;
+    background: pink;
+    border-radius: 5px;
+    border: none;
+}
+
+#kbDisLetter {
+    margin: 5px 5px 1px 1px;
+    width: 30px;
+    height: 30px;
+    background: gray;
+    border-radius: 5px;
+    border: none;
+}

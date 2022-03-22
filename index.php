@@ -22,6 +22,7 @@
 <body class="bg-gray-200">
     <?php
     session_start();
+    // session_destroy();
     // error_reporting(E_ERROR | E_PARSE);
 
     if (isset($_SESSION["online"])) {
@@ -29,13 +30,16 @@
             $page = $_GET['p'] . ".php";
             switch ($_GET['p']) {
                 case 'home':
+                    include("header.php");
                     include("pages/$page"); break;
                 case 'shop':
+                    include("header.php");
                     include("pages/$page"); break;
                 case 'game':
+                    include("header.php");
                     include("pages/$page"); break;
                 default:
-                    $_GET['p'] = "login"; 
+                    $_GET['p'] = "login";
                     include("pages/login.php");
                     break;
             }

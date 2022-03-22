@@ -4,6 +4,8 @@
             if(!empty($_POST['pseudo']) && !empty($_POST['pass'])){
                 if($_POST['pseudo'] == "toto" && $_POST['pass'] == "test"){
                     $_SESSION["online"] = TRUE;
+                    $_SESSION["coin"] = 200;
+                    header( "refresh:0;url=index.php?p=home" );
                 }else {
                     echo "pas les bons id";
                 }
