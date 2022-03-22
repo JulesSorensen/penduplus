@@ -23,7 +23,6 @@
     <?php
     session_start();
     // error_reporting(E_ERROR | E_PARSE);
-    
     if (!isset($_SESSION["online"])) {
         if(isset($_GET['p'])) {
             $page = $_GET['p'] . ".php";
@@ -38,8 +37,8 @@
                     $_GET['p'] = "about"; include("home.php"); break;
             }
         } else {
-            $_GET['p'] = "home";
-            include("pages/home.php");
+            $_GET['p'] = "login";
+            include("pages/$_GET[p].php");
         }
     } else {
         include("pages/login.php");
