@@ -1,13 +1,22 @@
+<?php
+session_start();
+if(isset($_SESSION))
+
+
+?>
+
+
+
 <link rel="stylesheet" href="../style/header.css">
 
 <div class="topnav">
-    <a id="home" class="active" href="#home">Pendu+</a>
+    <a class="tnav" href="#home">Pendu+</a>
 
     <div id="">
-        <a class="anav" href="#news">Accueil</a>
-        <a class="anav" href="#contact">Boutique</a>
-        <a class="anav" href="#about">About</a>
+        <a class="tnav" href="#news">Accueil</a>
+        <a class="tnav" href="#contact">Boutique</a>
+        <a class="tnav" href="#contact">COIN</a>
     </div>
 
-    <a class="anav" href="#about">Déconexion</a>
+    <a class="tnav" href="#about">Déconexion</a>
 </div>
