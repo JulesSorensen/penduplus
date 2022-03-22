@@ -2,19 +2,19 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 400px;
+    width: 450px;
+    height: 450px;
     padding: 40px;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, .5);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
-    border-radius: 10px;
+    background-image: url(../images/carre-removebg-preview.png);
+    background-repeat: no-repeat;
 }
 
 .login-box h2 {
     margin: 0 0 30px;
     padding: 0;
-    color: #fff;
+    color: rgb(134, 0, 21);
+    font-size: 50px;
     text-align: center;
 }
 
@@ -26,10 +26,10 @@
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
-    color: #fff;
+    color: rgb(134, 0, 21);
     margin-bottom: 30px;
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgb(134, 0, 21);
     outline: none;
     background: transparent;
 }
@@ -39,8 +39,8 @@
     top: 0;
     left: 0;
     padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
+    font-size: 20px;
+    color: rgb(134, 0, 21);
     pointer-events: none;
     transition: .5s;
 }
@@ -49,111 +49,52 @@
 .login-box .user-box input:valid~label {
     top: -20px;
     left: 0;
-    color: #03e9f4;
+    color: #00000002;
     font-size: 12px;
 }
 
-.login-box form a {
+
+/* button */
+
+button {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-family: inherit;
+}
+
+
+/* Fill button styling */
+
+.fill {
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    padding: 13px 50px 13px;
+    outline: 0;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
     position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #03e9f4;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px
+    background-color: rgba(0, 0, 0, 0);
 }
 
-.login-box a:hover {
-    background: #03e9f4;
-    color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
-}
-
-.login-box a span {
+.fill::after {
+    content: "";
+    background-color: rgb(134, 0, 21);
+    width: 100%;
+    z-index: -1;
     position: absolute;
-    display: block;
-}
-
-.login-box a span:nth-child(1) {
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #03e9f4);
-    animation: btn-anim1 1s linear infinite;
-}
-
-@keyframes btn-anim1 {
-    0% {
-        left: -100%;
-    }
-    50%,
-    100% {
-        left: 100%;
-    }
-}
-
-.login-box a span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #03e9f4);
-    animation: btn-anim2 1s linear infinite;
-    animation-delay: .25s
+    top: 7px;
+    left: 7px;
+    transition: 0.2s;
 }
 
-@keyframes btn-anim2 {
-    0% {
-        top: -100%;
-    }
-    50%,
-    100% {
-        top: 100%;
-    }
+.fill:hover::after {
+    top: 0px;
+    left: 0px;
 }
 
-.login-box a span:nth-child(3) {
-    bottom: 0;
-    right: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #03e9f4);
-    animation: btn-anim3 1s linear infinite;
-    animation-delay: .5s
-}
 
-@keyframes btn-anim3 {
-    0% {
-        right: -100%;
-    }
-    50%,
-    100% {
-        right: 100%;
-    }
-}
-
-.login-box a span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #03e9f4);
-    animation: btn-anim4 1s linear infinite;
-    animation-delay: .75s
-}
-
-@keyframes btn-anim4 {
-    0% {
-        bottom: -100%;
-    }
-    50%,
-    100% {
-        bottom: 100%;
-    }
-}
+/* End of Fill Button  */

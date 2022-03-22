@@ -28,22 +28,16 @@
 <body>
 <div class="login-box">
     <h2>Login</h2>
-    <form>
+    <form method="POST">
     <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Username</label>
+        <input type="text" name="pseudo" required="">
+        <label>Pseudo</label>
     </div>
     <div class="user-box">
-        <input type="password" name="" required="">
-        <label>Password</label>
+        <input type="password" name="pass" required="">
+        <label>Mot de Passe</label>
     </div>
-    <a href="#">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Submit
-    </a>
+    <button type="Submit" name="accept" class="fill">Connexion</button>
     </form>
 </div>
 
