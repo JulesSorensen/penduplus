@@ -38,7 +38,7 @@
             } ?>
         </div>
 
-        <button type="Submit" name="deco" id="destroy">Déconexion</button>
+        <button type="Submit" name="deco" id="destroy">Déconnexion</button>
     </div>
 </form>
 
