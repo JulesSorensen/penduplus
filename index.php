@@ -4,19 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/photoplus.ico">
-    <script src="./tailwind.js"></script>
-    <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    clifford: '#da373d',
-                }
-            }
-        }
-    }
-    </script>
+    <link rel="icon" href="">
 </head>
 
 <body class="bg-gray-200">
