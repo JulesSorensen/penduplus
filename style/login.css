@@ -1,3 +1,9 @@
+body{
+    background-image: url(../images/fondLogin.PNG);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .login-box {
     position: absolute;
     top: 55%;
@@ -12,6 +18,7 @@
 }
 
 .login-box h2 {
+    font-family: 'Caveat', cursive;
     margin: 0 0 30px;
     padding: 0;
     color: rgb(134, 0, 21);
@@ -61,7 +68,7 @@ button {
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
-    font-family: inherit;
+    font-family: 'Caveat', cursive;
 }
 
 
