@@ -18,8 +18,8 @@
 }
 
 #keyboard {
-    margin: 50px 0px 0px 0px;
-    width: 500px;
+    margin: 25px 0px 0px 0px;
+    width: 516px;
     height: 200px;
 }
 
@@ -36,7 +36,50 @@
     margin: 5px 5px 1px 1px;
     width: 30px;
     height: 30px;
-    background: gray;
+    background: #51483b;
     border-radius: 5px;
     border: none;
+}
+
+#kbDisRightLetter {
+    margin: 5px 5px 1px 1px;
+    width: 30px;
+    height: 30px;
+    background: #74ea74;
+    border-radius: 5px;
+    border: none;
+}
+
+#wonText {
+    margin: 0 0 0 0;
+    font-size: xx-large;
+    color: green;
+}
+#wonErrText {
+    margin: 0 0 0 0;
+    font-size: x-large;
+    color: green;
+}
+
+#looseText {
+    margin: 0 0 0 0;
+    font-size: xx-large;
+    color: red;
+}
+#looseErrText {
+    margin: 0 0 0 0;
+    font-size: x-large;
+    color: red;
+}
+
+#backButton {
+    margin: 15px 0 0 0;
+    padding: 5px 5px 5px 5px;
+    background: pink;
+    border-radius: 5px;
+    border: none;
+}
+#backButton:hover {
+    background: green;
+    color: white;
 }

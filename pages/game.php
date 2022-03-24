@@ -1,18 +1,28 @@
 <link rel="stylesheet" href="../style/game.css">
 <?php
-    $_SESSION["choosenLevel"] = "easy";
-if(!isset($_SESSION["choosenLevel"])) {
 
+if(!isset($_SESSION["choosenLevel"])) {
+    // error
+} else if (isset($_POST["goToMenu"])) {
+    unset($_POST["goToMenu"]);
+    unset($_SESSION["game"]);
+    unset($_SESSION["choosenLevel"]);
+    header("refresh:0;url=index.php?p=home");
 } else {
-    print_r($_SESSION);
     if (isset($_SESSION["game"])) {
-        if (isset($_POST["letter"])) {
+        if (isset($_POST["letter"]) && $_SESSION["game"]["finished"] === false) {
             if (!in_array($_POST["letter"], $_SESSION["game"]["letters"])) {
                 array_push($_SESSION["game"]["letters"], $_POST["letter"]);
                 if (!in_array($_POST["letter"], str_split($_SESSION["game"]["finalWord"]))) {
                     $_SESSION["game"]["errors"] += 1;
-                }
+                } else $_SESSION["game"]["founded"] += 1;
             }
+        }
+        if ($_SESSION["game"]["errors"] == 10) {
+            $_SESSION["game"]["finished"] = true;
+        } else if ($_SESSION["game"]["founded"] == strlen($_SESSION["game"]["finalWord"])) {
+            $_SESSION["game"]["won"] = true;
+            $_SESSION["game"]["finished"] = true;
         }
     } else {
         $string = json_decode(file_get_contents("data/words.json"));
@@ -25,13 +35,14 @@ if(!isset($_SESSION["choosenLevel"])) {
         }
         $_SESSION["game"] = [
             "finalWord" => $finalWord,
+            "founded" => 0,
             "errors" => 0,
             "letters" => [],
-            "finished" => false
+            "finished" => false,
+            "won" => false
         ];
     }
 
-    // if ($_SESSION["game"]["finished"] === false)
     ?>
         <div id="content">
             <?php 
@@ -62,26 +73,72 @@ if(!isset($_SESSION["choosenLevel"])) {
                     }
                 ?>
             </div>
+            <?php
+                if ($_SESSION["game"]["finished"]) {
+                    if ($_SESSION["game"]["won"]) {
+                        $errorsNb = $_SESSION["game"]["errors"];
+                        if ($errorsNb ==  0) {
+                            $errGameMsg = "Sans aucune erreur !";
+                        } else if ($errorsNb == 1) {
+                            $errGameMsg = "Avec seulement $errorsNb erreur !";
+                        } else $errGameMsg = "Avec $errorsNb erreurs";
+                        ?>
+                            <p id="wonText">Vous avez gagné</p>
+                            <p id="wonErrText"><?php echo $errGameMsg; ?></p>
+                        <?php
+                    } else {
+                        ?>
+                            <p id="looseText">Vous avez perdu</p>
+                            <p id="looseErrText">Avec 10 erreurs...</p>
+                        <?php
+                    }
+                    ?>
+                        <form method="POST" action="">
+                            <button id="backButton" name="goToMenu" type="submit">Retour au menu</button>
+                        </form>
+                    <?php
+                }
+            ?>
             <form id="keyboard" method="POST" action="">
                 <?php
                     $chars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
                     foreach($chars as $char){
                         if (in_array($char, $_SESSION["game"]["letters"])) {
-                            ?>
-                                <button type="reset" id="kbDisLetter">
-                                    <?php 
-                                        if (in_array($char, $_SESSION["game"]["letters"])) {
-                                            echo $char;
-                                        } else echo "_";
-                                    ?>
-                                </button>
-                            <?php
+                            if (in_array($char, str_split($_SESSION["game"]["finalWord"]))) {
+                                ?>
+                                    <button type="reset" id="kbDisRightLetter">
+                                        <?php 
+                                            if (in_array($char, $_SESSION["game"]["letters"])) {
+                                                echo $char;
+                                            } else echo "_";
+                                        ?>
+                                    </button>
+                                <?php
+                            } else {
+                                ?>
+                                    <button type="reset" id="kbDisLetter">
+                                        <?php 
+                                            if (in_array($char, $_SESSION["game"]["letters"])) {
+                                                echo $char;
+                                            } else echo "_";
+                                        ?>
+                                    </button>
+                                <?php
+                            }
                         } else {
-                            ?>
+                            if ($_SESSION["game"]["finished"] === false) {
+                                ?>
                                 <button type="submit" name="letter" value="<?php echo $char ?>" id="kbLetter">
                                     <?php echo $char; ?>
                                 </button>
                             <?php
+                            } else {
+                                ?>
+                                <button type="reset" id="kbLetter">
+                                    <?php echo $char; ?>
+                                </button>
+                            <?php
+                            }
                         }
                     }
                 ?>
