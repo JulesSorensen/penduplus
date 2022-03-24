@@ -37,14 +37,23 @@
                 </div><?php
             } ?>
         </div>
-
-        <button type="Submit" name="deco" id="destroy">Déconnexion</button>
+        <div class="popupdeco tnav" onclick="myDeco()">Déconnexion
+            <span class="popuptextdeco" id="Deconec">Souhaitez-vous vraiment vous déconnecter ?</br>
+                <button type="Submit" name="deco" id="destroy">Déconnexion</button>
+            </span>                
+        </div>
+        
     </div>
 </form>
 
 <script>
     function myFunction() {
     var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+    }
+
+    function myDeco() {
+    var popup = document.getElementById("Deconec");
     popup.classList.toggle("show");
     }
 </script>
