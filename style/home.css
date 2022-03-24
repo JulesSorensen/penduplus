@@ -63,6 +63,7 @@
 .container .card .box .content {
     padding: 20px;
     text-align: center;
+    z-index: 2;
 }
 
 .container .card .box .content h2 {
@@ -74,11 +75,12 @@
 }
 
 .container .card .box .content h3 {
+    margin-top: -20px;
     font-size: 1.8rem;
     color: #fff;
     z-index: 1;
     transition: 0.5s;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .container .card .box .content p {
@@ -127,6 +129,7 @@
 }
 
 .btn {
+    margin-top: 10px;
     width: 180px;
     height: 60px;
     cursor: pointer;

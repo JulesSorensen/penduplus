@@ -18,8 +18,9 @@ if (isset($_POST["easy"])) {
     <div class="card">
       <div class="box">
         <div class="content">
-          <h2>02</h2>
+          <h2>01</h2>
           <h3>Niveau Facile</h3>
+          <img src="../images/easy.png" alt="">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
           <div class="container2">
             <div class="center">
@@ -43,6 +44,7 @@ if (isset($_POST["easy"])) {
         <div class="content">
           <h2>02</h2>
           <h3>Niveau Moyen</h3>
+          <img src="../images/medium.png" alt="">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
           <div class="container2">
             <div class="center">
@@ -64,8 +66,9 @@ if (isset($_POST["easy"])) {
     <div class="card">
       <div class="box">
         <div class="content">
-          <h2>02</h2>
+          <h2>03</h2>
           <h3>Niveau Difficile</h3>
+          <img src="../images/hard.png" alt="">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
           <div class="container2">
             <div class="center">
