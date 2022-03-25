@@ -143,6 +143,7 @@ svg {
     position: absolute;
     left: 0;
     top: 0;
+    margin-top: 10px;
     fill: none;
     stroke: #fff;
     stroke-dasharray: 150 480;
