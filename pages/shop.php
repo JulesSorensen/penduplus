@@ -130,7 +130,7 @@ if (isset($_POST["btitem1"]) || isset($_POST["btitem2"]) || isset($_POST["btitem
                     <p>« Vis le moment présent, ne pense pas ; ressens, utilise ton instinct et ton intuition, ressens la Force. »</p>
                     <div class="container2">
                         <div class="center">
-                                <button type="submit" name="btitem1" class="btn">
+                                <button type="submit" name="btitem4" class="btn">
                                     <svg width="180px" height="60px" viewBox="0 0 180 60" class="border"><polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" /><polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" /></svg>
                                     <span>Acheter - 70 <img class="piece" src="../images/piece.png" alt="PA"></span>
                                 </button>
