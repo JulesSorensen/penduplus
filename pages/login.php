@@ -1,17 +1,24 @@
 <?php
+function connectUser() {
+    $_SESSION["online"] = TRUE;
+    $_SESSION["coin"] = 200;
+    header("refresh:0;url=index.php?p=home");
+};
 $id = "";
 if (isset($_POST["accept"])) {
     if (isset($_POST['pseudo']) && isset($_POST['pass'])) {
         if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
-            if ($_POST['pseudo'] == "toto" && $_POST['pass'] == "test") {
-                $_SESSION["online"] = TRUE;
-                $_SESSION["coin"] = 200;
-                header("refresh:0;url=index.php?p=home");
+            if ($_POST['pseudo'] == "jules" && $_POST['pass'] == "dev") {
+                connectUser();
+            } else if ($_POST['pseudo'] == "yan" && $_POST['pass'] == "lebg") {
+                connectUser();
+            } else if ($_POST['pseudo'] == "lucas" && $_POST['pass'] == "rj45") {
+                connectUser();
             } else {
-                $id = "⚠ pas les bons identifiants ⚠";
+                $id = "⚠ vous n'avez pas entré les bons identifiants ⚠";
             }
         } else {
-            $id = "⚠ compléter dans sa totalité le formulaire ⚠";
+            $id = "⚠ merci de compléter dans sa totalité le formulaire ⚠";
         }
     }
 }

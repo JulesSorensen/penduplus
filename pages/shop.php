@@ -23,11 +23,8 @@ if (isset($_POST["btitem1"]) || isset($_POST["btitem2"]) || isset($_POST["btitem
     }
     if (isset($_SESSION["coin"])) {
         if ($_SESSION["coin"] >= $valeur) {
-            // if($_SESSION["objet"] && $_SESSION["textobjet"]){
-
-            // }
-            $_SESSION["coin"] -= $valeur;   //Variable qui enregistre le nb des pieces
-            $_SESSION["objet"] = $objet;    //Variable qui enregistre le nom de l'objet
+            $_SESSION["coin"] -= $valeur;
+            $_SESSION["objet"] = $objet;
             $_SESSION["textobjet"] = $textobjet;
             header("refresh:0");
         } else {
@@ -37,30 +34,7 @@ if (isset($_POST["btitem1"]) || isset($_POST["btitem2"]) || isset($_POST["btitem
         //ERROR
     }
 }
-
 ?>
-
-<!--1 BOUCLIER : 3 TENTATIVES SUPP (FONCTION POUR T'AIDER):
-    if(isset($_SESSION["objet"])){
-        if($_SESSION["objet"] == "Bouclier"){
-            //ton code
-        }
-    } 
--->
-
-<!--2 Investisseur : x3 GAINS pour -3 ERREURS-->
-
-<!--3 Chanceux : 20% CHANCE DE FAIRE APPARAITRE UNE LETTRE SUITE A L'ERREUR  (FONCTION POUR T'AIDER):
-    $proba = 20;//20% chance.
-    $rand = rand(1, 100);//aléatoire entre 1 et 100.
-    if($rand <= $proba):
-        //C'est réussi
-    else:
-        //C'est foiré.
-    endif; 
--->
-
-<!--4 Jedi : FAIT APPARAITRE DES LETTRES DES LE DEBUT (EN FONTION DE LA LONGUEUR OU NON, COMME TU LE SENS) -->
 
 <h1 class="titre">BOUTIQUE</h1>
 <h2 class="cointext"><?php if (isset($_SESSION["coin"])) ?><?php echo $_SESSION["coin"] ?><img class="piecetitre" src="../images/piece.png" alt=""> Points Amours restants</h2>

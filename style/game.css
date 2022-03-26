@@ -9,6 +9,7 @@
 
 #lettersDiv {
     display: flex;
+    margin-top: 5px;
 }
 
 #letter {
@@ -20,7 +21,7 @@
 #keyboard {
     margin: 25px 0px 0px 0px;
     width: 516px;
-    height: 200px;
+    height: 100px;
 }
 
 #kbLetter {
@@ -41,11 +42,29 @@
     border: none;
 }
 
+#kbWrongLetter {
+    margin: 5px 5px 1px 1px;
+    width: 30px;
+    height: 30px;
+    background: red;
+    border-radius: 5px;
+    border: none;
+}
+
 #kbDisRightLetter {
     margin: 5px 5px 1px 1px;
     width: 30px;
     height: 30px;
     background: #74ea74;
+    border-radius: 5px;
+    border: none;
+}
+
+#kbObjLetter {
+    margin: 5px 5px 1px 1px;
+    width: 30px;
+    height: 30px;
+    background: #ffef2a;
     border-radius: 5px;
     border: none;
 }
@@ -82,4 +101,36 @@
 #backButton:hover {
     background: green;
     color: white;
+}
+
+#footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#goBack {
+    margin: 5px 0 0 0;
+    padding: 5px 5px 5px 5px;
+    background: #ffebeb;
+    border-radius: 5px;
+    border: none;
+}
+#goBack:hover {
+    background: gray;
+}
+
+#shieldMsg {
+    margin-top: 0;
+    color: green;
+}
+
+#objets {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
