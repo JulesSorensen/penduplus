@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="../style/game.css">
 <?php
-if(!isset($_SESSION["choosenLevel"])) {
+if(!isset($_SESSION["choosenLevel"])) { // si l'utilisateur n'a pas choisi de niveau, on le redirige vers la page home
     unset($_POST["goToMenu"]);
     unset($_SESSION["game"]);
     unset($_SESSION["choosenLevel"]);
     header("refresh:0;url=index.php?p=home");
-} else if (isset($_POST["goToMenu"])) {
-    if ($_SESSION["game"]["won"]) {
+} else if (isset($_POST["goToMenu"])) { // si l'utilisateur a cliqué sur le bouton pour revenir au menu
+    if ($_SESSION["game"]["won"]) { // si il a gagné la partie, les points sont donnés
         if ((isset($_SESSION["objet"]) && $_SESSION["objet"] == "Investisseur") && ($_SESSION["game"]["errors"] < 3)) {
             $_SESSION["coin"] += ($_SESSION["game"]["gain"] * 3);
         } else $_SESSION["coin"] += $_SESSION["game"]["gain"];
@@ -17,13 +17,13 @@ if(!isset($_SESSION["choosenLevel"])) {
     unset($_SESSION["choosenLevel"]);
     header("refresh:0;url=index.php?p=home");
 } else {
-    if (isset($_SESSION["game"])) {
-        if (isset($_POST["letter"]) && $_SESSION["game"]["finished"] === false) {
-            if (!in_array($_POST["letter"], $_SESSION["game"]["letters"])) {
+    if (isset($_SESSION["game"])) { // si la partie est déjà lancé
+        if (isset($_POST["letter"]) && $_SESSION["game"]["finished"] === false) { // si la partie en cours et qu'une lettre est entrée
+            if (!in_array($_POST["letter"], $_SESSION["game"]["letters"])) { // si la lettre n'a jamais été essayée
                 array_push($_SESSION["game"]["letters"], $_POST["letter"]);
                 if (!in_array($_POST["letter"], str_split($_SESSION["game"]["finalWord"]))) {
                     $addError = false;
-                    if(isset($_SESSION["objet"]) && $_SESSION["objet"] == "Bouclier") {
+                    if(isset($_SESSION["objet"]) && $_SESSION["objet"] == "Bouclier") { // système d'ignorance des 3 premières erreurs objet bouclier
                         if ($_SESSION["game"]["shieldErrors"] < 3) {
                             $_SESSION["game"]["shieldErrors"] += 1;
                         } else $addError = true;
@@ -31,7 +31,7 @@ if(!isset($_SESSION["choosenLevel"])) {
 
                     if ($addError) {
                         $_SESSION["game"]["errors"] += 1;
-                        if (isset($_SESSION["objet"]) && $_SESSION["objet"] == "Chanceux") {
+                        if (isset($_SESSION["objet"]) && $_SESSION["objet"] == "Chanceux") { // système de génération de lettre objet chanceux
                             $lettersFound = 0;
                             $lettersNotFound = [];
                             foreach (str_split($_SESSION["game"]["finalWord"]) as $key => $val) {
@@ -59,6 +59,7 @@ if(!isset($_SESSION["choosenLevel"])) {
                 }
             }
         }
+        // système de vérification de fin de partie, après la vérification de lettre entrée
         if ($_SESSION["game"]["errors"] == 10) {
             $_SESSION["game"]["finished"] = true;
         } else {
@@ -73,9 +74,9 @@ if(!isset($_SESSION["choosenLevel"])) {
                 $_SESSION["game"]["finished"] = true;
             }
         }
-    } else {
-        $string = json_decode(file_get_contents("data/words.json"));
-        if ($_SESSION["choosenLevel"] == "easy") {
+    } else { // si la partie n'a pas commencée, la créer
+        $string = json_decode(file_get_contents("data/words.json")); // json répertoriant les mots en fonction de leur difficulté
+        if ($_SESSION["choosenLevel"] == "easy") { // système de choix du mot aléatoire en fonction de la difficulté
             $finalWord = strtoupper($string->easy[rand(0, (sizeof($string->easy)-1))]);
             $gain = 5;
         } else if ($_SESSION["choosenLevel"] == "medium") {
@@ -85,7 +86,7 @@ if(!isset($_SESSION["choosenLevel"])) {
             $finalWord = strtoupper($string->hard[rand(0, (sizeof($string->hard)-1))]);
             $gain = 30;
         }
-        $_SESSION["game"] = [
+        $_SESSION["game"] = [ // tableau associatif principal du jeu
             "finalWord" => $finalWord,
             "shieldErrors" => 0,
             "letters" => [],
@@ -96,7 +97,7 @@ if(!isset($_SESSION["choosenLevel"])) {
             "won" => false
         ];
 
-        if (isset($_SESSION["objet"]) && $_SESSION["objet"] == "Jedi") {
+        if (isset($_SESSION["objet"]) && $_SESSION["objet"] == "Jedi") { // système de génération de lettre en début de partie objet jedi
             $newLetters = [];
             if ($_SESSION["choosenLevel"] == "easy") $lettersToGive = 1;
             else if ($_SESSION["choosenLevel"] == "medium") $lettersToGive = 2;
@@ -115,6 +116,7 @@ if(!isset($_SESSION["choosenLevel"])) {
 
     ?>
         <div id="content">
+            <!-- Affichage du pendu -->
             <?php 
                 $errNb = $_SESSION["game"]["errors"];
                 if ($errNb > 0) {
@@ -127,6 +129,7 @@ if(!isset($_SESSION["choosenLevel"])) {
                     <?php
                 }
             ?>
+            <!-- Affichage des lettres du mot actuellement trouvés -->
             <div id="lettersDiv">
                 <?php
                     $chars = str_split($_SESSION["game"]["finalWord"]);
@@ -147,6 +150,7 @@ if(!isset($_SESSION["choosenLevel"])) {
                     }
                 ?>
             </div>
+            <!-- Affichage du message de fin de partie -->
             <?php
                 if ($_SESSION["game"]["finished"]) {
                     if ($_SESSION["game"]["won"]) {
@@ -160,7 +164,7 @@ if(!isset($_SESSION["choosenLevel"])) {
                             <p id="wonText">Vous avez gagné</p>
                             <p id="wonErrText"><?php echo $errGameMsg; ?></p>
                         <?php
-                        if (isset($_SESSION["objet"]) && $_SESSION["objet"] == "Investisseur") {
+                        if (isset($_SESSION["objet"]) && $_SESSION["objet"] == "Investisseur") { // affichage du résultat de l'effet de l'objet investisseur
                             if ($_SESSION["game"]["errors"] < 3) {
                                 ?>
                                     <div style="display: flex; flex-direction: row; align-items: center;">
@@ -191,6 +195,7 @@ if(!isset($_SESSION["choosenLevel"])) {
                     }
                 }
             ?>
+            <!-- Affichage du clavier, en prennant en compte les lettres entrées valides/invalides ainsi que les objets pour leur attribuer des effets css différents -->
             <form id="keyboard" method="POST" action="">
                 <?php
                     $chars = ["A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "W", "X", "C", "V", "B", "N"];
@@ -243,7 +248,7 @@ if(!isset($_SESSION["choosenLevel"])) {
                     }
                 ?>
             </form>
-            
+            <!-- Affichage des objets et du bouton de retour en bas de la page -->
             <div id="footer">
                 <?php
                     if (isset($_SESSION["objet"])) {
@@ -317,11 +322,12 @@ if(!isset($_SESSION["choosenLevel"])) {
             </div>
         </div>
         
+        <!-- Script permettant d'appuyer sur les touches du clavier pour l'envoyer au php -->
         <script>
             $(document).ready(function(){
                 $(document).keypress(function(e){
                     let key = e.which;
-                    if (key >= 97 && key <= 122) {
+                    if (key >= 97 && key <= 122) { // Les lettre minuscules seront retranscrites en majuscules
                         key -= 32;
                     }
                     if (key >= 65 && key <= 90) {
