@@ -1,12 +1,12 @@
 <?php
-if (isset($_POST["easy"])) {
+if (isset($_POST["easy"])) { //si la difficulté choisi est facile 
   $_SESSION["choosenLevel"] = "easy";
-  header("refresh:0;url=index.php?p=game");
-} elseif (isset($_POST["medium"])) {
+  header("refresh:0;url=index.php?p=game"); //redirection vers la page de jeu
+} elseif (isset($_POST["medium"])) { //si la difficulté choisi est moyenne
   $_SESSION["choosenLevel"] = "medium";
   header("refresh:0;url=index.php?p=game");
-} elseif (isset($_POST["hard"])) {
-  $_SESSION["choosenLevel"] = "hard";
+} elseif (isset($_POST["hard"])) { //si la difficulté choisi est difficile
+  $_SESSION["choosenLevel"] = "hard"; 
   header("refresh:0;url=index.php?p=game");
 }
 
@@ -15,6 +15,7 @@ if (isset($_POST["easy"])) {
 <link rel="stylesheet" href="../style/home.css">
 <div class="beforecontain">
   <div class="container">
+    <!-- mes cards de niveau -->
     <div class="card">
       <div class="box">
         <div class="content">
@@ -25,6 +26,7 @@ if (isset($_POST["easy"])) {
           <div class="container2">
             <div class="center">
               <form action="" method="post">
+                <!-- mon bouton pour accéder à la page game dfficulté  facile -->
                 <button type="submit" name="easy" class="btn">
                   <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
                     <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
@@ -89,16 +91,3 @@ if (isset($_POST["easy"])) {
   </div>
 </div>
 
-<!-- <script>
-
-      function btneasy(){
-        $.ajax({
-        type:"POST",
-        url:"index.php?p=home",
-        data:{"easy":1},
-        success:function(){location.reload();}
-      })
-      }
-
-
-</script> -->
