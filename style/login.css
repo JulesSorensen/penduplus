@@ -61,18 +61,12 @@ body {
     font-size: 12px;
 }
 
-
-/* button */
-
 button {
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
     font-family: 'Caveat', cursive;
 }
-
-
-/* Fill button styling */
 
 .fill {
     font-size: 20px;
@@ -103,9 +97,6 @@ button {
     top: 0px;
     left: 0px;
 }
-
-
-/* End of Fill Button  */
 
 p {
     color: red;
